@@ -141,7 +141,7 @@ test "concurrent enqueue and dequeue" {
                     _ = q.enqueue(base + @as(i32, @intCast(i))) catch unreachable;
                 }
             }
-        }.run, .{ queue, t }); // Fixed: Pass queue directly
+        }.run, .{ queue, t });
     }
 
     // Wait for all threads to finish enqueuing

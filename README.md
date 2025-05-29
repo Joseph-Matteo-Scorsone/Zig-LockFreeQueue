@@ -22,9 +22,11 @@ A high-performance, lock-free queue implementation in Zig, based on the Michael-
 
 ### Integrate into Your build.zig:
 ```
-const lockfree_queue = b.addModule("lockfree_queue", .{
-    .source_dir = .{ .path = "path/to/Zig-LockFreeQueue/src" },
+const lockfree_queue = b.createModule(.{
+        .root_source_file = b.path("Zig-LockFreeQueue/src/lockFreeQueue.zig"),
 });
+
+exe_mod.addImport("lockfree_queue", lockfree_queue);
 ```
 ### Replace "path/to/Zig-LockFreeQueue/src" with the actual path to the cloned repository.
 
@@ -40,11 +42,9 @@ pub fn main() !void {
     defer queue.deinit();
 
     try queue.enqueue(42);
-    if (queue.dequeue()) |value| {
-        std.debug.print("Dequeued value: {}\n", .{value});
-    } else {
-        std.debug.print("Queue is empty.\n", .{});
-    }
+    std.debug.print("Dequeued value: {any}\n", .{queue.dequeue()});
+
+    std.debug.print("Queue is empty.\n", .{});
 }
 ```
 

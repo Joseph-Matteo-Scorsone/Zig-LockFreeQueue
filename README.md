@@ -28,7 +28,7 @@ const lockfree_queue = b.createModule(.{
 
 exe_mod.addImport("lockfree_queue", lockfree_queue);
 ```
-### Replace "path/to/Zig-LockFreeQueue/src" with the actual path to the cloned repository.
+### Make sure "Zig-LockFreeQueue/src" is the actual path to the cloned repository.
 
 # Usage
 Here's a basic example of how to use Zig-LockFreeQueue:

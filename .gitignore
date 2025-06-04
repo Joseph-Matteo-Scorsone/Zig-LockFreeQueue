@@ -5,10 +5,3 @@ zig-out/
 # Editor and IDE files
 .vscode/
 *.code-workspace
-
-# Operating system files
-.DS_Store
-Thumbs.db
-
-# Miscellaneous
-*.log

@@ -43,6 +43,12 @@ pub fn LockFreeQueue(comptime T: type) type {
             return queue;
         }
 
+        pub fn peek(self: *Self) ?T {
+            const head = self.head.load(.seq_cst) orelse return null;
+            const next = head.next orelse return null;
+            return next.data;
+        }
+
         pub fn deinit(self: *Self) void {
             var current: ?*Node(T) = self.head.load(.seq_cst);
             while (current) |node| {

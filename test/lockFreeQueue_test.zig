@@ -2,13 +2,15 @@ const std = @import("std");
 const LockFreeQueue = @import("lockfree_queue").LockFreeQueue;
 const testing = std.testing;
 
-test "enqueue and dequeue basic functionality" {
+test "enqueue, peek, and dequeue basic functionality" {
     const gpa = testing.allocator;
     var queue = try LockFreeQueue(i32).init(gpa);
     defer queue.deinit();
 
     try queue.enqueue(1);
     try queue.enqueue(2);
+
+    try testing.expectEqual(1, queue.peek());
 
     const val1 = try queue.dequeue();
     try testing.expectEqual(1, val1);

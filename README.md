@@ -42,9 +42,6 @@ pub fn main() !void {
     defer queue.deinit();
 
     try queue.enqueue(42);
-
-    std.debug.print("Value: {any}\n", .{queue.peek()});
-
     std.debug.print("Dequeued value: {any}\n", .{queue.dequeue()});
 
     std.debug.print("Queue is empty.\n", .{});
@@ -60,9 +57,6 @@ Deinitializes the queue, releasing any allocated resources.
 
 ```enqueue(self: *LockFreeQueue(T), value: T) !void```
 Adds a value to the end of the queue.
-
-```peek(self: *LockFreeQueue(T)) ?void```
-Returns the value at the front of the queue without removing it, or null if the queue is empty.
 
 ```dequeue(self: *LockFreeQueue(T)) ?T```
 Removes and returns a value from the front of the queue. Returns null if the queue is empty.
